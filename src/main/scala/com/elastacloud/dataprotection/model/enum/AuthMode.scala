@@ -7,7 +7,7 @@ import com.fasterxml.jackson.core.`type`.TypeReference
  */
 object AuthMode extends Enumeration {
   type Auth = Value
-  val KEY, SERVICE_PRINCIPLE, IAM = Value
+  val KEY, SERVICE_PRINCIPLE, IAM, NONE = Value
 }
 
 class AuthMode extends TypeReference[AuthMode.type]

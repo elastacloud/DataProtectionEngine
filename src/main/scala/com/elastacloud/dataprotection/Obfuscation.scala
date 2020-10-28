@@ -3,7 +3,7 @@ package com.elastacloud.dataprotection
 import com.elastacloud.dataprotection.IO.Dictionary
 import com.elastacloud.dataprotection.columns.{Anonymizer, Generalizer, Pseudonymizer}
 import com.elastacloud.dataprotection.model.`enum`.ObfuscationMethod
-import com.elastacloud.dataprotection.model.protection.{DataDescription, ProtectionDescription}
+import com.elastacloud.dataprotection.model.protection.ProtectionDescription
 import org.apache.spark.sql.types.{StringType, StructField, StructType}
 import org.apache.spark.sql.{DataFrame, Row}
 
@@ -22,8 +22,8 @@ object Obfuscation extends SharedSparkSession {
    * @param config policy to apply over data
    * @return obfuscated data
    */
-  def run(data: DataFrame, config: DataDescription): DataFrame = {
-    val obfuscated = config.protections.foldLeft(data)((df, col) => obfuscate(col, df))
+  def run(data: DataFrame, config: List[ProtectionDescription]): DataFrame = {
+    val obfuscated = config.foldLeft(data)((df, col) => obfuscate(col, df))
     obfuscated.select(data.columns.head, data.columns.tail: _*)
   }
 

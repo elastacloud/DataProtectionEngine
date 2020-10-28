@@ -7,5 +7,5 @@ case class ProtectionPolicy(
                              name: String,
                              source: DataSource,
                              destination: DataSource,
-                             data: DataDescription
+                             protections: List[ProtectionDescription]
                            )
