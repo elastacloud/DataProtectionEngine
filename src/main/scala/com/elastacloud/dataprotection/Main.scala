@@ -14,7 +14,7 @@ object Main extends SharedSparkSession {
 
     val data = DataReader.readData(config.source)
 
-    val obfuscated = Obfuscation.run(data, config.data)
+    val obfuscated = Obfuscation.run(data, config.protections)
 
     DataWriter.writeData(config.destination, obfuscated)
   }
